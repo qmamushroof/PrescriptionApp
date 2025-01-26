@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Add Prescription</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+<h1>Add Prescription</h1>
+<form th:action="@{/prescriptions/save}" method="post">
+<!--<form th:action="@{/prescriptions/add}">-->
+    <label for="date">Date:</label>
+    <input type="date" id="date" name="date" required>
+    <br>
+
+    <label for="patientName">Patient Name:</label>
+    <input type="text" id="patientName" name="patientName" required>
+    <br>
+
+    <label for="patientAge">Patient Age:</label>
+    <input type="number" id="patientAge" name="patientAge" required min="0">
+    <br>
+
+    <label for="patientGender">Patient Gender:</label>
+    <select id="patientGender" name="patientGender" required>
+        <option value="">Select</option>
+        <option value="Male">Male</option>
+        <option value="Female">Female</option>
+        <option value="Other">Other</option>
+    </select>
+    <br>
+    <br>
+
+    <label for="diagnosis">Diagnosis:</label>
+    <textarea id="diagnosis" name="diagnosis"></textarea>
+    <br>
+    <br>
+
+    <label for="medicines">Medicines:</label>
+    <textarea id="medicines" name="medicines"></textarea>
+    <br>
+    <br>
+
+    <label for="nextVisitDate">Next Visit Date:</label>
+    <input type="date" id="nextVisitDate" name="nextVisitDate">
+    <br>
+
+    <button type="submit">Add Prescription</button>
+</form>
+<a href="/prescriptions/list">Back to List</a>
+</body>
+</html>

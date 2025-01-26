@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Prescription List</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+<h1>Prescription List</h1>
+<form method="get" action="/prescriptions/list">
+    <label for="startDate">Start Date:</label>
+    <input type="date" id="startDate" name="startDate" th:value="${startDate}" required>
+    <label for="endDate">End Date:</label>
+    <input type="date" id="endDate" name="endDate" th:value="${endDate}" required>
+    <button type="submit">Filter</button>
+</form>
+<table>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Date</th>
+        <th>Patient Name</th>
+        <th>Age</th>
+        <th>Gender</th>
+        <th>Diagnosis</th>
+        <th>Medicines</th>
+        <th>Next Visit</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="prescription : ${prescriptions}">
+        <td th:text="${prescription.id}"></td>
+        <td th:text="${prescription.prescriptionDate}"></td>
+        <td th:text="${prescription.patientName}"></td>
+        <td th:text="${prescription.patientAge}"></td>
+        <td th:text="${prescription.patientGender}"></td>
+        <td th:text="${prescription.diagnosis}"></td>
+        <td th:text="${prescription.medicines}"></td>
+        <td th:text="${prescription.nextVisitDate}"></td>
+        <td>
+            <a th:href="@{'/prescriptions/edit/' + ${prescription.id}}">Edit</a> |
+            <a th:href="@{'/prescriptions/delete/' + ${prescription.id}}" onclick="return confirm('Are you sure?')">Delete</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<a href="/prescriptions/add">Add New Prescription</a>
+</body>
+</html>
