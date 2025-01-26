@@ -1,15 +1,18 @@
 body {
     font-family: Arial, sans-serif;
-    margin: 20px;
     line-height: 1.6;
+    text-align: center;
 }
 
 h1 {
-    color: #333;
+    color: black;
+    margin: auto;
+    text-align: center;
 }
 
 form {
-    margin-bottom: 20px;
+    margin: auto;
+    text-align: justify-all;
 }
 
 label {
@@ -20,12 +23,18 @@ label {
 
 input, select, textarea, button {
     margin-bottom: 10px;
+    margin-right: 20px;
     padding: 8px;
-    width: 300px;
+    width: 250px;
+}
+
+input:hover, select:hover, textarea:hover {
+    background-color: whitesmoke;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
 button:hover{
-    background-color: darkcyan;
+    background-color: skyblue;
 }
 
 table {
@@ -42,6 +51,15 @@ th, td {
     padding: 8px;
 }
 
+tr:hover {
+    background-color: aliceblue;
+}
+
+td:hover {
+    font-weight: bold;
+    background-color: lightsteelblue;
+}
+
 a {
     text-decoration: none;
     color: blue;
@@ -49,5 +67,5 @@ a {
 
 a:hover {
     text-decoration: underline;
-    color: darkcyan;
+    font-weight: bold;
 }

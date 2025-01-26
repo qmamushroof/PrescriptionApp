@@ -37,16 +37,40 @@ public class PrescriptionController {
     }
 
     @PostMapping("/save")
-    public String savePrescription(@ModelAttribute Prescription prescription) {
+    public String savePrescription(@ModelAttribute Prescription prescription,
+                                   @RequestParam("date") LocalDate prescriptionDate) {
+
+        prescription.setPrescriptionDate(prescriptionDate);
         prescriptionService.savePrescription(prescription);
         return "redirect:/prescriptions/list";
     }
 
     @GetMapping("/edit/{id}")
     public String showEditForm(@PathVariable Long id, Model model) {
-        Prescription prescription = prescriptionService.getPrescriptionById(id);
-        model.addAttribute("prescription", prescription);
-        return "edit-prescription";
+        try {
+            Prescription prescription = prescriptionService.getPrescriptionById(id);
+            model.addAttribute("prescription", prescription);
+            return "edit-prescription";
+        } catch (Exception e) {
+            e.printStackTrace();
+            return "redirect:/prescriptions/list";
+    }
+}
+
+    @PostMapping("/edit")
+    public String updatePrescription(@ModelAttribute Prescription prescription) {
+        Prescription existingPrescription = prescriptionService.getPrescriptionById(prescription.getId());
+
+        existingPrescription.setPrescriptionDate(prescription.getPrescriptionDate());
+        existingPrescription.setPatientName(prescription.getPatientName());
+        existingPrescription.setPatientAge(prescription.getPatientAge());
+        existingPrescription.setPatientGender(prescription.getPatientGender());
+        existingPrescription.setDiagnosis(prescription.getDiagnosis());
+        existingPrescription.setMedicines(prescription.getMedicines());
+        existingPrescription.setNextVisitDate(prescription.getNextVisitDate());
+
+        prescriptionService.savePrescription(existingPrescription);
+        return "redirect:/prescriptions/list";
     }
 
     @GetMapping("/delete/{id}")

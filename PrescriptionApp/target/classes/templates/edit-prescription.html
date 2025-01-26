@@ -6,39 +6,41 @@
 </head>
 <body>
 <h1>Edit Prescription</h1>
-<form th:action="@{/prescriptions/edit}" method="post">
-    <input type="hidden" id="id" name="id" th:value="${prescription.id}">
+<form th:action="@{/prescriptions/edit}" th:object="${prescription}" method="post">
+    <input type="hidden" th:field="*{id}">
 
     <label for="date">Date:</label>
-    <input type="date" id="date" name="date" th:value="${prescription.date}" required>
+    <input type="date" id="date" name="date" th:field="*{prescriptionDate}" required>
     <br>
 
     <label for="patientName">Patient Name:</label>
-    <input type="text" id="patientName" name="patientName" th:value="${prescription.patientName}" required>
+    <input type="text" id="patientName" name="patientName" th:field="*{patientName}" required>
     <br>
 
     <label for="patientAge">Patient Age:</label>
-    <input type="number" id="patientAge" name="patientAge" th:value="${prescription.patientAge}" required min="0">
+    <input type="number" id="patientAge" name="patientAge" th:field="*{patientAge}" required min="0">
     <br>
 
     <label for="patientGender">Patient Gender:</label>
-    <select id="patientGender" name="patientGender" th:value="${prescription.patientGender}" required>
-        <option value="Male" th:selected="${prescription.patientGender == 'Male'}">Male</option>
-        <option value="Female" th:selected="${prescription.patientGender == 'Female'}">Female</option>
-        <option value="Other" th:selected="${prescription.patientGender == 'Other'}">Other</option>
+    <select id="patientGender" name="patientGender" th:field="*{patientGender}" required>
+        <option value="Male">Male</option>
+        <option value="Female">Female</option>
+        <option value="Other">Other</option>
     </select>
     <br>
 
     <label for="diagnosis">Diagnosis:</label>
-    <textarea id="diagnosis" name="diagnosis" th:text="${prescription.diagnosis}"></textarea>
+    <textarea id="diagnosis" name="diagnosis" th:field="*{diagnosis}"></textarea>
+    <br>
     <br>
 
     <label for="medicines">Medicines:</label>
-    <textarea id="medicines" name="medicines" th:text="${prescription.medicines}"></textarea>
+    <textarea id="medicines" name="medicines" th:field="*{medicines}"></textarea>
+    <br>
     <br>
 
     <label for="nextVisitDate">Next Visit Date:</label>
-    <input type="date" id="nextVisitDate" name="nextVisitDate" th:value="${prescription.nextVisitDate}">
+    <input type="date" id="nextVisitDate" name="nextVisitDate" th:field="*{nextVisitDate}">
     <br>
 
     <button type="submit">Save Changes</button>
